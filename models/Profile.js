@@ -15,7 +15,7 @@ const ProflieSchema = new mongoose.Schema({
     type: String
   },
   status: {
-    type: String,
+    type: String,          // ex: developer , senior dev
     required: true
   },
   skills: {

@@ -43,7 +43,9 @@ router.post('/',
       // see if user exists
       let user = await User.findOne({email});
       if(!user){
-        return res.status(400).json({errors: [{msg: 'This email has not account'}]});
+        return res
+            .status(400)
+            .json({errors: [{msg: 'This user is not exist'}]});
       }
 
       // check weather password is same or not 
