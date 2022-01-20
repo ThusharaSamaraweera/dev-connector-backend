@@ -126,7 +126,7 @@ router.put('/likes/:id',
 
       //check if the post has alredy been liked by the user
       if(post.likes.filter( like => like.user.toString() === req.user.id).length > 0){
-        return res.json(400).json({msg: "Post already liked"});
+        return res.status(400).json({msg: "Post already liked"});
       }
 
       post.likes.unshift({user: req.user.id});
@@ -138,4 +138,33 @@ router.put('/likes/:id',
     }
   }
 )
+
+//@router PUT api/posts/unlikes/:id
+//@desc   unlike a post
+//@access private
+
+router.put('/unlikes/:id',
+  auth,
+  async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+
+      //check if the post has alredy been liked by the user
+      if(post.likes.filter( like => like.user.toString() === req.user.id).length === 0){
+        return res.json(400).json({msg: "Post has not yet been liked"});
+      }
+
+      // Get remove index
+      const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id);
+
+      post.likes.splice(removeIndex, 1);
+      await post.save();
+      res.json(post.likes);
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send('Server Error');      
+    }
+  }
+)
+
 module.exports = router;
