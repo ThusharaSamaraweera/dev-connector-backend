@@ -1,5 +1,10 @@
 # DevConnector
 
+## use .env to store these environment variable
+MONGO_URL
+JWTSecret
+GITHUBClientID
+GITHUBSecret
 
 
 ## Getting started

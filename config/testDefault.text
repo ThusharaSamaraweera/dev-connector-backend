@@ -1,7 +1,0 @@
-rename this file as default.json to access global value
-{
-  "mongoURI": "",
-  "jwtSecret" : "",
-  "githubClientId" : "",
-  "githubSecret" : ""
-}
