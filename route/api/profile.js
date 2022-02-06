@@ -47,9 +47,9 @@ router.post('/',
     ]
   ],
    async (req, res) => {
-    const errrors = validationResult(req);
-    if(!errrors.isEmpty()){
-      return res.status(400).json({errors: errrors.array});
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      return res.status(400).json({ errors: errors.array() });
     }
 
     // destructure the request
