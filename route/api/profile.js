@@ -304,7 +304,7 @@ router.put('/education', [
 // @desc delete eduction
 // @access private
 
-router.delete('/eduction/:edu_id',
+router.delete('/education/:edu_id',
   [
     auth,
     async (req, res) => {
