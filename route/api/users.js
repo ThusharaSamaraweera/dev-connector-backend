@@ -34,7 +34,7 @@ router.post('/',
       }
 
       // Get users gravatar
-      const avator = gravator.url(email, {
+      const avatar = gravator.url(email, {
         s: '200',
         r: 'pg',
         d: 'mm'
@@ -43,7 +43,7 @@ router.post('/',
       user = new User({
         name, 
         email,
-        avator,
+        avatar,
         password
       })
       // Encrypt password
