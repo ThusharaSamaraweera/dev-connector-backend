@@ -22,4 +22,4 @@ app.use('/api/profile', require('./route/api/profile'));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen( PORT, () => console.log(`Server is running on ${PORT}`));
+app.listen( PORT, () => console.log(`Server v1.1 is running on ${PORT}`));
