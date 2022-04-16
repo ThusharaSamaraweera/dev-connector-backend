@@ -38,7 +38,7 @@ router.post('/',
         s: '200',
         r: 'pg',
         d: 'mm'
-      })
+      }, true)
 
       user = new User({
         name, 
