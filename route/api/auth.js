@@ -7,6 +7,11 @@ const { check, validationResult } = require("express-validator/check");
 
 const User = require("../../models/User");
 
+router.get("/check", async (req, res) => {
+  const user = await User.find({});
+  res.status(200).send(user);
+});
+
 // @router  GET API/auth
 // @desc    Test router
 // @access  Public
@@ -67,7 +72,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token, name: user.name, email: user.email });
         }
       );
     } catch (err) {
