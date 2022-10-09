@@ -25,7 +25,7 @@ router.get('/me', auth, async (req, res) => {
     )
 
     if(!profile) {
-      return res.status(400).json({msg: 'There is no proflie for this user'});
+      return res.status(400).json({msg: 'There is no profile for this user'});
     }
 
     res.json(profile);
@@ -109,7 +109,7 @@ router.post('/',
       profile = new Profile(profileFields);
       
       await profile.save();
-      res.json(profile);
+      res.status(201).json(profile);
 
     } catch(err){
       console.log(err.message);

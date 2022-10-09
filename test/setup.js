@@ -1,6 +1,9 @@
 const { MongoMemoryServer } = require("mongodb-memory-server");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const request = require("supertest");
+const { app } = require("../app");
+const url = "/api/users";
 
 let mongod;
 
@@ -24,3 +27,16 @@ beforeEach(async () => {
 afterAll(async () => {
   mongoose.disconnect();
 });
+
+global.signIn = async () => {
+  const res = await request(app)
+    .post(url)
+    .send({
+      name: "test",
+      email: "test@gmail.com",
+      password: "123456",
+    })
+    .expect(200);
+  
+  return res.body.token;
+};
