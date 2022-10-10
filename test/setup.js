@@ -2,8 +2,10 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const request = require("supertest");
+
 const { app } = require("../app");
 const url = "/api/users";
+const auth = "/api/auth";
 
 let mongod;
 
@@ -37,6 +39,13 @@ global.signIn = async () => {
       password: "123456",
     })
     .expect(200);
-  
-  return res.body.token;
+
+  const res1 = await request(app)
+    .post(auth)
+    .send({
+      email: "test@gmail.com",
+      password: "123456",
+    })
+    .expect(200);
+  return res1.body.token;
 };

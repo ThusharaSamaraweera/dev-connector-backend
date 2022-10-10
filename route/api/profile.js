@@ -12,7 +12,7 @@ const Post = require('../../models/Post');
 const { response } = require('express');
 
 // @router  GET API/profile/me
-// @desc    Get current users proflie
+// @desc    Get current users profile
 // @access  Private
 
 router.get('/me', auth, async (req, res) => {
@@ -25,10 +25,10 @@ router.get('/me', auth, async (req, res) => {
     )
 
     if(!profile) {
-      return res.status(400).json({msg: 'There is no profile for this user'});
+      return res.status(404).json({msg: 'There is no profile for this user'});
     }
 
-    res.json(profile);
+    res.status(200).json(profile);
 
   }  catch(err) {
     console.error(err.message) ;
@@ -119,7 +119,7 @@ router.post('/',
 );
 
 // @router GET api/profiles 
-// @desc Get all proflies
+// @desc Get all profiles
 // @access Public
 
 router.get('/', async( req, res) => {
