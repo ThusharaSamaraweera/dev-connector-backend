@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const request = require("supertest");
 
 const { app } = require("../app");
-const url = "/api/users";
 const auth = "/api/auth";
 
 let mongod;
@@ -32,7 +31,7 @@ afterAll(async () => {
 
 global.signIn = async () => {
   const res = await request(app)
-    .post(url)
+    .post(auth+ "/sign-up")
     .send({
       name: "test",
       email: "test@gmail.com",
@@ -41,7 +40,7 @@ global.signIn = async () => {
     .expect(200);
 
   const res1 = await request(app)
-    .post(auth)
+    .post(auth + "/sign-in")
     .send({
       email: "test@gmail.com",
       password: "123456",
